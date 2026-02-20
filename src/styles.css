@@ -797,6 +797,10 @@ select {
     flex: 1;
 }
 
+.proposal-actions .secondary-btn {
+    margin-top: 0;
+}
+
 /* EMPTY STATE */
 .empty-state {
     text-align: center;
