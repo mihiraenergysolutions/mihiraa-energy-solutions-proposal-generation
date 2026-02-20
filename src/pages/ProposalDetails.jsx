@@ -128,12 +128,12 @@ function ProposalDetails() {
 
             <div className="no-print">
                 <div className="proposal-bottom-bar">
-                    <button
+                    {!pdfLoading && <button
                         className="secondary-btn"
                         onClick={() => navigate(`/proposal-form/${proposal.id}`)}
                     >
                         Edit Proposal
-                    </button>
+                    </button>}
 
                     <button
                         className="primary-btn"

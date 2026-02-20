@@ -107,7 +107,7 @@ function ProposalList() {
                             {/* Actions */}
                             <div className="proposal-actions">
                                 <button
-                                    className="secondary-btn"
+                                    className="primary-btn"
                                     onClick={() => navigate(`/proposal/${proposal.id}`)}
                                 >
                                     View

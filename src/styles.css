@@ -97,7 +97,7 @@ textarea {
     border: none;
     background: #2563eb;
     color: white;
-    font-size: 17px;
+    font-size: 14px;
     font-weight: 600;
     cursor: pointer;
 }
@@ -220,7 +220,7 @@ select {
     border: 2px dashed #dbeafe;
     background: #f8fafc;
     color: #2563eb;
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 600;
     cursor: pointer;
     transition: 0.2s ease;
