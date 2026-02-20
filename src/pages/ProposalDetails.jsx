@@ -10,6 +10,7 @@ function ProposalDetails() {
 
     const [proposal, setProposal] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [pdfLoading, setPdfLoading] = useState(false);
     const [otherDetails, setOtherDetails] = useState(otherDetailsConfig);
 
     /* ================= FETCH PROPOSAL ================= */
@@ -55,6 +56,7 @@ function ProposalDetails() {
 
     const generatePDF = async () => {
         try {
+            setPdfLoading(true);
             const response = await fetch(
                 "https://pdf-renderer-hszc.onrender.com/api/generate-pdf",
                 {
@@ -73,7 +75,6 @@ function ProposalDetails() {
             if (!response.ok) throw new Error("PDF generation failed");
 
             const blob = await response.blob();
-
             const link = document.createElement("a");
             link.href = URL.createObjectURL(blob);
             link.download = `${proposal.proposal_code}-${proposal.client_name}.pdf`;
@@ -82,6 +83,8 @@ function ProposalDetails() {
         } catch (err) {
             console.error(err);
             alert("Failed to generate PDF");
+        } finally {
+            setPdfLoading(false); // stop loader
         }
     };
 
@@ -135,8 +138,16 @@ function ProposalDetails() {
                     <button
                         className="primary-btn"
                         onClick={generatePDF}
+                        disabled={pdfLoading}
                     >
-                        Generate PDF
+                        {pdfLoading ? (
+                            <>
+                                <span className="spinner"></span>
+                                Generating PDF...
+                            </>
+                        ) : (
+                            "Generate PDF"
+                        )}
                     </button>
                 </div>
             </div>
