@@ -43,7 +43,12 @@ function ContentSectionRenderer({ section, onChange, formData }) {
 
         return text
             .replace("{plantCapacity}", formData?.plantCapacity || "")
-            .replace("{panelWattPeak}", formData?.panelWattPeak || "")
+            .replace(
+                "{panelWattPeak}",
+                formData?.panelWattPeak === "Custom"
+                    ? formData?.customPanelWattPeak
+                    : formData?.panelWattPeak || ""
+            )
             .replace("{panelQuantity}", formData?.panelQuantity || "")
             .replace("{clientName}", formData?.clientName || "")
             .replace("{clientAddress}", formData?.clientAddress || "")
@@ -100,7 +105,7 @@ function ContentSectionRenderer({ section, onChange, formData }) {
                 <h3>{section.heading}</h3>
 
                 <div className="proposer-block">
-                    <p><strong>Mihira Energy Solutions Pvt. Limited</strong></p>
+                    <p><strong>M/s Mihira Energy Solutions Pvt. Limited</strong></p>
                     {proposer && <p>{proposer}</p>}
                     <p>Phone: {formData?.proposerPhone || "-"}</p>
 
@@ -123,15 +128,22 @@ function ContentSectionRenderer({ section, onChange, formData }) {
         const getValue = (row) => {
             /* ----- simple field ----- */
             if (!row.valueType || row.valueType === "field") {
-                const value = formData?.[row.valueKey];
+                let value = formData?.[row.valueKey];
+
+                // ⭐ handle custom panel watt peak
+                if (row.valueKey === "panelWattPeak" && value === "Custom") {
+                    value = formData?.customPanelWattPeak;
+                }
+
                 if (!value && value !== 0) return "-";
+
                 return `${row.prefix || ""}${value}${row.suffix || ""}`;
             }
 
             /* ----- array ----- */
             if (row.valueType === "array") {
                 const value = formData?.[row.valueKey];
-                return value?.length ? value.join(", ") : "-";
+                return value?.length ? value.join(" / ") + ' Equivalent' : "-";
             }
 
             /* ----- inverter summary ----- */
@@ -229,7 +241,7 @@ function ContentSectionRenderer({ section, onChange, formData }) {
                             .map((row, i) => (
                                 <tr key={i}>
                                     <td className="spec-label">{row.label}</td>
-                                    <td className="spec-value">{getValue(row)}</td>
+                                    <td className={`spec-value ${row.bold ? "row-bold" : ""}`}>{getValue(row)}</td>
                                 </tr>
                             ))}
                     </tbody>

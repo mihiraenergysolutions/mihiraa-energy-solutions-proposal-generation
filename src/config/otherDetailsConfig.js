@@ -29,10 +29,7 @@ const otherDetailsConfig = [
         headingOrder: 2,
         items: [
             {
-                text: `Mihira Energy Solutions is a professionally managed solar EPC company specializing in residential, commercial, and institutional solar power projects. We enable customers to significantly reduce their electricity (EB) bills by transitioning to clean and sustainable solar energy.`
-            },
-            {
-                text: `Our team has collectively delivered projects aggregating over 2 GW across India. Mihira Energy Solutions brings proven engineering expertise, reliable execution, and long-term operational support.`
+                text: `Mihira Energy Solutions is a professionally managed solar company delivering end-to-end solar solutions for residential, commercial, and institutional clients. We empower customers to lower electricity costs and achieve energy independence through clean, reliable, and sustainable solar power.`
             }
         ]
     },
@@ -41,7 +38,7 @@ const otherDetailsConfig = [
     {
         type: "list-section",
         id: "coreServicesEpc",
-        heading: "Our Core Services - EPC (Turnkey) Model",
+        heading: "Our Core Services",
         headingOrder: 3,
         items: [
             {
@@ -50,9 +47,19 @@ const otherDetailsConfig = [
                     "Complete design, engineering, procurement, installation, testing & commissioning"
             },
             {
+                label: "BOOT (Build-Own-Operate-Transfer) Model",
+                description:
+                    "We design, finance, build, and operate your project end-to-end, ensuring seamless performance and returns, and transfer full ownership to you after the agreed period."
+            },
+            {
                 label: "",
                 description:
-                    "On-grid rooftop solar plants for homes, apartments, factories, and commercial buildings"
+                    "Solar Asset Monitoring & Performance Optimisation"
+            },
+            {
+                label: "",
+                description:
+                    "Operations & Maintenance (O&M)"
             },
             {
                 label: "",
@@ -94,7 +101,7 @@ const otherDetailsConfig = [
 
                 rows: [
                     { label: "Capacity", valueKey: "plantCapacity", suffix: " kW" },
-                    { label: "Type", valueKey: "panelWattPeak", suffix: " W" },
+                    { label: "Type", valueKey: "panelWattPeak", suffix: " wP" },
                     { label: "Make", valueKey: "panelMakes", valueType: "array" },
                     { label: "Quantity", valueKey: "panelQuantity" },
 
@@ -151,6 +158,11 @@ const otherDetailsConfig = [
                         showIf: ["BOOT", "BOOT + EPC"]
                     },
                     {
+                        label: "BOOT Contract Years",
+                        valueKey: "contractYears",
+                        showIf: ["BOOT", "BOOT + EPC"]
+                    },
+                    {
                         label: "Estimated Generation Per Day",
                         valueKey: "generationPerDay",
                         suffix: " units"
@@ -175,7 +187,8 @@ const otherDetailsConfig = [
                     {
                         label: "Lifetime Savings (EPC)",
                         valueType: "lifetimeEpc",
-                        showIf: ["EPC"]
+                        showIf: ["EPC"],
+                        bold: true
                     },
 
                     // BOOT
@@ -190,9 +203,10 @@ const otherDetailsConfig = [
                         showIf: ["BOOT", "BOOT + EPC"]
                     },
                     {
-                        label: "Lifetime Savings (BOOT)",
+                        label: "Lifetime Savings with BOOT",
                         valueType: "lifetimeBoot",
-                        showIf: ["BOOT", "BOOT + EPC"]
+                        showIf: ["BOOT", "BOOT + EPC"],
+                        bold: true
                     }
                 ]
             }
@@ -334,7 +348,7 @@ const otherDetailsConfig = [
         items: [
             {
                 label: "Execution Period",
-                description: "30 to 45 days from work order and approvals"
+                description: "30 to 45 days from work order and approvals from Government departments"
             }
         ]
     },
@@ -413,7 +427,8 @@ const otherDetailsConfig = [
                 rows: [
                     {
                         label: "Total Project Cost (Turnkey EPC)",
-                        valueType: "totalProjectCost"
+                        valueType: "totalProjectCost",
+                        bold: true
                     }
                 ]
             },
@@ -430,6 +445,10 @@ const otherDetailsConfig = [
                     {
                         description:
                             "Inclusive of installation, approvals, logistics & commissioning"
+                    },
+                    {
+                        description:
+                            "This quote is valid for 15 days from the date of proposal submission"
                     }
                 ]
             }

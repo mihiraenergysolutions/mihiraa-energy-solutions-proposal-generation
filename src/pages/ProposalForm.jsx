@@ -60,7 +60,10 @@ function ProposalForm() {
 
     useEffect(() => {
         const plantCapacity = parseFloat(formData.plantCapacity);
-        const panelWatt = parseFloat(formData.panelWattPeak);
+        const panelWatt =
+            formData.panelWattPeak === "Custom"
+                ? parseFloat(formData.customPanelWattPeak)
+                : parseFloat(formData.panelWattPeak);
 
         if (!plantCapacity || !panelWatt) return;
 
@@ -70,7 +73,7 @@ function ProposalForm() {
             ...prev,
             panelQuantity: quantity
         }));
-    }, [formData.plantCapacity, formData.panelWattPeak]);
+    }, [formData.plantCapacity, formData.panelWattPeak, formData.customPanelWattPeak]);
 
     /* ================= HANDLE CHANGE ================= */
 

@@ -102,7 +102,7 @@ const proposalFormConfig = [
             "12 Years",
             "13 Years",
             "14 Years",
-            "15 Years"
+            "15 Years",
         ],
         showIf: {
             field: "projectType",
@@ -152,7 +152,18 @@ const proposalFormConfig = [
                         name: "panelWattPeak",
                         label: "Solar Panel Watt Peak (Wp)",
                         placeholder: "Select watt peak",
-                        options: [570, 580, 590, 610, 630, 670, 700]
+                        options: [500, 530, 570, 580, 590, 610, 630, 670, 700, "Custom"]
+                    },
+                    {
+                        type: "number",
+                        name: "customPanelWattPeak",
+                        label: "Enter Custom Watt Peak",
+                        placeholder: "Enter Wp",
+                        suffix: "Wp",
+                        showIf: {
+                            field: "panelWattPeak",
+                            value: "Custom"
+                        }
                     },
                     {
                         type: "readonly",
@@ -170,14 +181,26 @@ const proposalFormConfig = [
                         name: "productWarranty",
                         label: "Product Warranty",
                         placeholder: "Years",
-                        options: [10, 11, 12, 13, 14, 15]
+                        options: ["10",
+                            "11",
+                            "12",
+                            "13",
+                            "14",
+                            "15",
+                            "As per manufacturer"]
                     },
                     {
                         type: "select",
                         name: "performanceWarranty",
                         label: "Performance Warranty",
                         placeholder: "Years",
-                        options: [15, 16, 17, 18, 19, 20]
+                        options: ["15",
+                            "16",
+                            "17",
+                            "18",
+                            "19",
+                            "20",
+                            "As per manufacturer"]
                     }
                 ]
             },
@@ -187,7 +210,11 @@ const proposalFormConfig = [
                 name: "inverterWarranty",
                 label: "Inverter Warranty",
                 placeholder: "Years",
-                options: [7, 8, 9, 10]
+                options: ["7",
+                    "8",
+                    "9",
+                    "10",
+                    "As per manufacturer"]
             }
         ]
     },
@@ -201,6 +228,7 @@ const proposalFormConfig = [
                 name: "capacity",
                 placeholder: "Select capacity",
                 options: [
+                    "3kW",
                     "5kW",
                     "8kW",
                     "10kW",
