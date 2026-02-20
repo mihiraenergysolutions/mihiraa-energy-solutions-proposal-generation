@@ -242,14 +242,24 @@ const proposalFormConfig = [
                         phone: "+91 72074 28288"
                     },
                     {
-                        label: "Ravi Teja",
-                        value: "Ravi Teja",
-                        phone: "+91 90000 00000"
+                        label: "Teja Prakash",
+                        value: "Teja Prakash",
+                        phone: "+91 95730 65732"
                     },
                     {
-                        label: "Suresh Kumar",
-                        value: "Suresh Kumar",
-                        phone: "+91 80000 00000"
+                        label: "Pavanesh Addala",
+                        value: "Pavanesh Addala",
+                        phone: "+91 88863 25249"
+                    },
+                    {
+                        label: "Surya Teja",
+                        value: "Surya Teja",
+                        phone: "+91 96660 98090"
+                    },
+                    {
+                        label: "Akshith",
+                        value: "Akshith",
+                        phone: "+91 70135 38959"
                     },
                     {
                         label: "Other",
