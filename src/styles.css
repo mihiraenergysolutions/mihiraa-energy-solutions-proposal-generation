@@ -78,9 +78,15 @@ textarea {
 .bottom-bar {
     position: sticky;
     bottom: 0;
+    display: flex;
+    gap: 10px;
     background: white;
     padding: 16px 20px;
     border-top: 1px solid #eee;
+}
+
+.bottom-bar .secondary-btn {
+    margin-top: 0;
 }
 
 /* Button */

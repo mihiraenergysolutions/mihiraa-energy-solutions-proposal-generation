@@ -239,6 +239,9 @@ function ProposalForm() {
             </div>
 
             <div className="bottom-bar no-print">
+                <button className="secondary-btn" onClick={() => navigate("/")}>
+                    GO HOME
+                </button>
                 <button className="primary-btn" onClick={handleGenerate}>
                     {id ? "Update Proposal" : "Generate Proposal"}
                 </button>
