@@ -103,6 +103,11 @@ const otherDetailsConfig = [
                     { label: "Capacity", valueKey: "plantCapacity", suffix: " kW" },
                     { label: "Type", valueKey: "panelWattPeak", suffix: " wP" },
                     { label: "Make", valueKey: "panelMakes", valueType: "array" },
+                    {
+                        label: "Technology",
+                        valueKey: "panelType",
+                        valueType: "array"
+                    },
                     { label: "Quantity", valueKey: "panelQuantity" },
 
                     { label: "Product Warranty", valueKey: "productWarranty", suffix: " Years" },

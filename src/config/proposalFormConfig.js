@@ -141,6 +141,35 @@ const proposalFormConfig = [
         ]
     },
     {
+        type: "multi-select",
+        name: "panelType",
+        label: "Solar Panel Type / Technology",
+        placeholder: "Select panel type",
+        options: [
+            "Mono PERC",
+            "Polycrystalline",
+            "TOPCon",
+            "Bifacial",
+            "N-Type TOPCon",
+            "HJT (Heterojunction)",
+            "PERC Half Cut",
+            "Shingled Modules",
+            "Thin Film",
+            "Other"
+        ]
+    },
+    {
+        type: "text",
+        name: "customPanelType",
+        label: "Custom Panel Type",
+        placeholder: "Enter panel technology",
+        showIf: {
+            field: "panelType",
+            includes: "Other"
+        }
+    },
+
+    {
         type: "section",
         title: "Solar Panel Details",
         fields: [

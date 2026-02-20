@@ -142,8 +142,20 @@ function ContentSectionRenderer({ section, onChange, formData }) {
 
             /* ----- array ----- */
             if (row.valueType === "array") {
-                const value = formData?.[row.valueKey];
-                return value?.length ? value.join(" / ") + ' Equivalent' : "-";
+                let value = formData?.[row.valueKey] || [];
+
+                // panel type custom handling
+                if (row.valueKey === "panelType" && value.includes("Other")) {
+                    const filtered = value.filter(v => v !== "Other");
+
+                    if (formData?.customPanelType) {
+                        filtered.push(formData.customPanelType);
+                    }
+
+                    value = filtered;
+                }
+
+                return value.length ? value.join(" / ") + " Equivalent" : "-";
             }
 
             /* ----- inverter summary ----- */
