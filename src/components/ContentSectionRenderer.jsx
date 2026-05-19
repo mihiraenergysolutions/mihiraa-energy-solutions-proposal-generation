@@ -393,7 +393,12 @@ function ContentSectionRenderer({ section, onChange, formData }) {
                 {/* LIST SECTION */}
                 {section.type === "list-section" && (
                     <ul className="content-list">
-                        {items.map((item, i) => {
+                        {items
+                            .filter((item) => {
+                                if (!item.showIf) return true;
+                                return item.showIf.includes(formData?.projectType);
+                            })
+                            .map((item, i) => {
                             /* ----- PAYMENT TERM ITEM ----- */
                             if (item.valueType === "paymentTerm") {
                                 const plant = Number(formData?.plantCapacity || 0);

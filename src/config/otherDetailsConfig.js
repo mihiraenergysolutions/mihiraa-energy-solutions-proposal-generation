@@ -432,7 +432,8 @@ const otherDetailsConfig = [
 
                 items: [
                     {
-                        description: "Exclusive of GST (8.9%)"
+                        description: "Exclusive of GST (8.9%)",
+                        showIf: ["EPC", "BOOT + EPC"]
                     },
                     {
                         description:
