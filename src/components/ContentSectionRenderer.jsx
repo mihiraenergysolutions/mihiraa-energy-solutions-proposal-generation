@@ -394,6 +394,70 @@ function ContentSectionRenderer({ section, onChange, formData }) {
                 {section.type === "list-section" && (
                     <ul className="content-list">
                         {items.map((item, i) => {
+                            /* ----- PAYMENT TERM ITEM ----- */
+                            if (item.valueType === "paymentTerm") {
+                                const plant = Number(formData?.plantCapacity || 0);
+                                const costPerKW = Number(formData?.costPerKW || 0);
+                                const totalProjectCost = plant * costPerKW;
+                                const amount = totalProjectCost * (item.percent || 0);
+                                const gstAmount = amount * 0.089;
+                                const formattedAmount = amount
+                                    ? formatCurrency(amount)
+                                    : "-";
+                                const formattedGst = amount
+                                    ? formatCurrency(gstAmount)
+                                    : "-";
+
+                                return (
+                                    <li key={i} className="preview-list-item">
+                                        {!isEditing ? (
+                                            item.label ? (
+                                                <>
+                                                    <strong>
+                                                        {replacePlaceholders(item.label)}
+                                                    </strong>
+                                                    {` — ${replacePlaceholders(
+                                                        item.description
+                                                    )} — ${formattedAmount} + ${formattedGst} GST (8.9%)`}
+                                                </>
+                                            ) : (
+                                                replacePlaceholders(item.description)
+                                            )
+                                        ) : (
+                                            <div className="list-edit-row">
+                                                <input
+                                                    placeholder="Label (optional)"
+                                                    value={item.label || ""}
+                                                    onChange={(e) =>
+                                                        updateItem(i, "label", e.target.value)
+                                                    }
+                                                />
+
+                                                <input
+                                                    placeholder="Description"
+                                                    value={item.description || ""}
+                                                    onChange={(e) =>
+                                                        updateItem(
+                                                            i,
+                                                            "description",
+                                                            e.target.value
+                                                        )
+                                                    }
+                                                />
+
+                                                <button
+                                                    type="button"
+                                                    className="remove-btn"
+                                                    onClick={() => removeItem(i)}
+                                                >
+                                                    ✕
+                                                </button>
+                                            </div>
+                                        )}
+                                    </li>
+                                );
+                            }
+
                             /* ----- LOGISTICS DYNAMIC ITEM ----- */
                             if (item.valueType === "transportationScope") {
                                 const scope = formData?.transportationScope;

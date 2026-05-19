@@ -364,31 +364,6 @@ const otherDetailsConfig = [
     },
     {
         type: "list-section",
-        id: "paymentTerms",
-
-        heading: "Payment Terms for EPC Projects",
-        headingOrder: 2,
-
-        // ⭐ only show for EPC or BOOT + EPC
-        showIf: ["EPC", "BOOT + EPC"],
-
-        items: [
-            {
-                label: "Purchase order confirmation",
-                description: "30% of the project amount"
-            },
-            {
-                label: "After material dispatch",
-                description: "60% of the project amount"
-            },
-            {
-                label: "After installation and testing",
-                description: "10% of the project amount"
-            }
-        ]
-    },
-    {
-        type: "list-section",
         id: "paymentDetails",
 
         heading: "Payment Details",
@@ -401,18 +376,18 @@ const otherDetailsConfig = [
             },
             {
                 label: "Account Number",
-                description: "50200118300114"
+                description: "50200119223882"
             },
             {
                 label: "Name",
-                description: "MIHIRA ENERGY SOLUTIONS"
+                description: "Mihiraa Energy Solutions Private Limited"
             },
             {
                 label: "IFSC Code",
                 description: "HDFC0001243"
             },
             {
-                description: "Dabagarden Branch"
+                description: "Dabagardens Branch"
             },
             {
                 description: "Visakhapatnam"
@@ -426,7 +401,7 @@ const otherDetailsConfig = [
         heading: "Commercial Terms",
         headingOrder: 2,
 
-        showIf: ["EPC", "BOOT + EPC"],
+        showIf: ["BOOT", "EPC", "BOOT + EPC"],
 
         sections: [
             // TOTAL PROJECT COST TABLE
@@ -438,11 +413,14 @@ const otherDetailsConfig = [
                     {
                         label: "Total Project Cost (Turnkey EPC)",
                         valueType: "totalProjectCost",
+                        showIf: ["EPC", "BOOT + EPC"],
                         bold: true
                     },
                     {
-                        label: "Caution Deposit (Fully refundable after the contract period for BOOT projects)",
-                        valueType: "cautionDeposit"
+                        label: "Caution Deposit (fully refundable after contract period)",
+                        valueType: "cautionDeposit",
+                        bold: true,
+                        showIf: ["BOOT", "BOOT + EPC"]
                     }
                 ]
             },
@@ -465,6 +443,37 @@ const otherDetailsConfig = [
                             "This quote is valid for 15 days from the date of proposal submission"
                     }
                 ]
+            }
+        ]
+    },
+    {
+        type: "list-section",
+        id: "paymentTerms",
+
+        heading: "Payment Terms for EPC Projects",
+        headingOrder: 2,
+
+        // ⭐ only show for EPC or BOOT + EPC
+        showIf: ["EPC", "BOOT + EPC"],
+
+        items: [
+            {
+                label: "Work order confirmation",
+                description: "20% of the project amount",
+                valueType: "paymentTerm",
+                percent: 0.2
+            },
+            {
+                label: "Before material dispatch",
+                description: "70% of the project amount",
+                valueType: "paymentTerm",
+                percent: 0.7
+            },
+            {
+                label: "After installation and project commission",
+                description: "10% of the project amount",
+                valueType: "paymentTerm",
+                percent: 0.1
             }
         ]
     },
