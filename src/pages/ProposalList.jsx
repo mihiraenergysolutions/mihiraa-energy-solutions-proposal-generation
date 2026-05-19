@@ -15,18 +15,24 @@ function ProposalList() {
     }, []);
 
     const fetchProposals = async () => {
-        setLoading(true);
+        try {
+            setLoading(true);
 
-        const { data, error } = await supabase
-            .from("proposals")
-            .select("*")
-            .order("created_at", { ascending: false });
+            const { data, error } = await supabase
+                .from("proposals")
+                .select(
+                    "id, proposal_code, created_at, client_name, project_type, plant_capacity, property_type"
+                )
+                .order("created_at", { ascending: false });
 
-        if (!error) {
+            if (error) throw error;
             setProposals(data || []);
+        } catch (error) {
+            console.error("Failed to fetch proposals:", error);
+            setProposals([]);
+        } finally {
+            setLoading(false);
         }
-
-        setLoading(false);
     };
 
     /* ================= DATE FORMAT ================= */

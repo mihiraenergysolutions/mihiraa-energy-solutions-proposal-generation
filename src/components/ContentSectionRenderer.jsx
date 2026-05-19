@@ -189,6 +189,10 @@ function ContentSectionRenderer({ section, onChange, formData }) {
             const bootBill = monthlyUnits * bootTariff;
             const bootMonthlySavings = epcMonthly - bootBill;
             const bootAnnual = bootMonthlySavings * 12;
+            const bootDiscountPercent =
+                clientTariff > 0
+                    ? ((clientTariff - bootTariff) / clientTariff) * 100
+                    : null;
 
             const lifetimeBoot =
                 contractYears > 0
@@ -212,6 +216,11 @@ function ContentSectionRenderer({ section, onChange, formData }) {
             if (row.valueType === "bootBill")
                 return formatCurrency(bootBill);
 
+            if (row.valueType === "bootDiscountPercent")
+                return bootDiscountPercent !== null
+                    ? `${bootDiscountPercent.toFixed(2)}%`
+                    : "-";
+
             if (row.valueType === "bootMonthlySavings")
                 return formatCurrency(bootMonthlySavings);
 
@@ -227,6 +236,11 @@ function ContentSectionRenderer({ section, onChange, formData }) {
                 return totalProjectCost
                     ? formatCurrency(totalProjectCost)
                     : "-";
+
+            if (row.valueType === "cautionDeposit") {
+                const cautionDeposit = totalProjectCost ? totalProjectCost * 0.15 : 0;
+                return cautionDeposit ? formatCurrency(cautionDeposit) : "-";
+            }
 
             return "-";
         };

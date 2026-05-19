@@ -163,6 +163,11 @@ const otherDetailsConfig = [
                         showIf: ["BOOT", "BOOT + EPC"]
                     },
                     {
+                        label: "Discount Percentage",
+                        valueType: "bootDiscountPercent",
+                        showIf: ["BOOT", "BOOT + EPC"]
+                    },
+                    {
                         label: "BOOT Contract Years",
                         valueKey: "contractYears",
                         showIf: ["BOOT", "BOOT + EPC"]
@@ -434,6 +439,10 @@ const otherDetailsConfig = [
                         label: "Total Project Cost (Turnkey EPC)",
                         valueType: "totalProjectCost",
                         bold: true
+                    },
+                    {
+                        label: "Caution Deposit (Fully refundable after the contract period for BOOT projects)",
+                        valueType: "cautionDeposit"
                     }
                 ]
             },
